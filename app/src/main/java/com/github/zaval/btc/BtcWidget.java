@@ -1,37 +1,20 @@
 package com.github.zaval.btc;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.pm.ActivityInfoCompat;
-import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Implementation of App Widget functionality.
@@ -101,23 +84,10 @@ public class BtcWidget extends AppWidgetProvider {
             permissions.checkWriteExternalStoragePermission();
         }
 
-//TODO: clipboard listener
-//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-//        boolean needClipboard = pref.getBoolean("watch_tx", true);
+//        ClipListener clipListener = new ClipListener(context);
+//        ClipboardManager cb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+//        cb.addPrimaryClipChangedListener(clipListener);
 //
-//        final ClipboardManager cb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-//        cb.addPrimaryClipChangedListener(new ClipboardManager.OnPrimaryClipChangedListener() {
-//            @Override
-//            public void onPrimaryClipChanged() {
-//                ClipData clip = cb.getPrimaryClip();
-//                if (clip == null){
-//                    return;
-//                }
-//                ClipData.Item it = clip.getItemAt(0);
-//                Log.e("BTC", "" + it.getText());
-//            }
-//        });
-
 
     }
 
@@ -144,7 +114,6 @@ public class BtcWidget extends AppWidgetProvider {
                     appWidgetManager.updateAppWidget(appWidgetId, views);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.e("BTC", "" + e.getMessage());
                 }
             }
         });
